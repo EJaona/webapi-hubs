@@ -8,7 +8,7 @@ server.use(express.json());
 
 // The C in CRUD
 
-server.post("/hubs", (req, res) => {
+server.post("/api/users", (req, res) => {
   const hub = req.body;
 
   db.hubs
@@ -22,7 +22,7 @@ server.post("/hubs", (req, res) => {
 });
 
 // The R in CRUD
-server.get("/hubs", (req, res) => {
+server.get("/api/users", (req, res) => {
   db.hubs
     .find()
     .then(hubs => {
@@ -32,7 +32,7 @@ server.get("/hubs", (req, res) => {
       res.status(err.code).json({ success: false, message: err.message });
     });
 });
-server.get("/hubs/:id", (req, res) => {
+server.get("/api/users/:id", (req, res) => {
   const { id } = req.params;
 
   db.hubs
@@ -46,7 +46,7 @@ server.get("/hubs/:id", (req, res) => {
 });
 
 // The U in CRUD
-server.put("/hubs/:id", (req, res) => {
+server.put("/api/users/:id", (req, res) => {
   const { id } = req.params;
   const changes = req.body;
 
@@ -68,7 +68,7 @@ server.put("/hubs/:id", (req, res) => {
 });
 
 // The D in CRUD
-server.delete("/hubs/:id", (req, res) => {
+server.delete("/api/users/:id", (req, res) => {
   const hubId = req.params.id;
 
   db.hubs
