@@ -32,6 +32,18 @@ server.get("/hubs", (req, res) => {
       res.status(err.code).json({ success: false, message: err.message });
     });
 });
+server.get("/hubs/:id", (req, res) => {
+  const { id } = req.params;
+
+  db.hubs
+    .findById(id)
+    .then(hubs => {
+      res.status(200).json({ success: true, hubs });
+    })
+    .catch(err => {
+      res.status(err.code).json({ success: false, message: err.message });
+    });
+});
 
 // The U in CRUD
 server.put("/hubs/:id", (req, res) => {
